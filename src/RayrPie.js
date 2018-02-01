@@ -8,26 +8,38 @@ class RayrPie extends React.Component {
 
     static defaultProps = {};
 
-    componentDidMount() {
-        let value = 40
-        var percent = value / 100, perimeter = Math.PI * 2 * 170, circle = document.querySelectorAll("circle")[1];
-        console.log(circle)
-        circle.setAttribute('stroke-dasharray', perimeter * percent + " " + perimeter * (1 - percent));
-    }
+    constructor(props) {
+        super(props)
+        console.log(props)
 
+    }
     render() {
-        let width = 400, bgColor = 'red', thick = 10, value = 40, perimeter = Math.PI * 2 * 170, percent = value / 100
+        const {
+            width = 440,
+            thick = 40,
+            value = 50,
+            radius = 170,
+            backColor = '#ccc',
+            fontColor = 'red',
+            perimeter = Math.PI * 2 * 170,
+            percent = value / 100,
+            durTime = '2s',
+            calcMode = 'spline',
+            linecap = 'round'
+        } = this.props;
 
         return (
             <div className="rayr-pie">
-                <svg width="440" height="440" viewBox="0 0 440 440">
-                    <circle id='circle' cx="220" cy="220" r="170" strokeWidth="50" stroke="#D1D3D7" fill="none">
-                    </circle>
-                    <circle cx="220" cy="220" r="170" strokeWidth="50" stroke="#00A5E0" fill="none"
-                            strokeLinecap="round"
-                            transform="matrix(0,-1,1,0,0,440)" strokeDasharray="0 1069">
-                        <animate attributeName="stroke-dasharray" dur="5s" from="0" to={perimeter * percent}
-                                 calcMode="linear"/>
+                <svg width={width} height={width} viewBox={`0 0 ${width} ${width}`}>
+                    <circle id='circle' cx={width / 2} cy={width / 2} r={radius} strokeWidth={thick} stroke={backColor}
+                            fill='none'></circle>
+                    <circle cx={width / 2} cy={width / 2} r={radius} strokeWidth={thick} stroke={fontColor} fill='none'
+                            strokeLinecap={linecap}
+                            transform={`matrix(0,-1,1,0,0,${width})`} strokeDasharray={`0 ${perimeter}`}>
+                        <animate attributeName="stroke-dasharray"
+                                 dur={durTime} by={perimeter * percent}
+                                 keyTimes="0;1" calcMode={calcMode} keySplines=".5 0 .5 1"
+                                 fill="freeze"/>
                     </circle>
                 </svg>
             </div>
