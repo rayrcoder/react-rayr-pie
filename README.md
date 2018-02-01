@@ -1,4 +1,4 @@
-#RayrPie ⭕️
+# RayrPie ⭕️
 
 ## Features 
 * A simple process circle by svg
@@ -37,12 +37,12 @@ $ npm start
 ```
 
 ## Params 
-* width:<length>
-* thick:<length>
-* value:<length>
-* radius:<number-optional-number>
-* backColor:<color>
-* fontColor:<color>
+* width: <box-width>
+* thick: <cicle-width>
+* value: <process-length>
+* radius: <number-optional-number>
+* backColor:<color-value>
+* fontColor:<color-value>
 * perimeter = Math.PI * 2 * 170,
 * durTime:<clock-value> | indefinite
 * calcMode:discrete | linear | paced | spline
