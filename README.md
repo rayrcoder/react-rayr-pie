@@ -37,13 +37,12 @@ $ npm start
 ```
 
 ## Params 
-* width: <box-width>
-* thick: <cicle-width>
-* value: <process-length>
-* radius: <number-optional-number>
-* backColor:<color-value>
-* fontColor:<color-value>
-* perimeter = Math.PI * 2 * 170,
-* durTime:<clock-value> | indefinite
+* width: box-width-number
+* thick: circle-width-number
+* value: process-number
+* radius: optional-number
+* backColor:color-value
+* fontColor:color-value
+* durTime:clock-value | indefinite
 * calcMode:discrete | linear | paced | spline
 * linecap:butt | round | square | inherit
