@@ -8,10 +8,11 @@ import {RayrPie} from 'react-rayr-pie';
 function App() {
     return (
         <div>
-            <RayrPie fontColor='yellow' value={20} durTime={'1s'}/>
+            <RayrPie fontColor='yellow' durTime={'1s'}/>
         </div>
     )
 }
+
 const run = () => {
     ReactDOM.render(<App/>, document.getElementById('app'));
 };
