@@ -1,23 +1,19 @@
-import 'react-rayr-pie/src/RayrPie.scss';
-
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {RayrPie} from 'react-rayr-pie';
-
+import {RayrPie,RayrBar} from 'react-rayr-pie';
 
 class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             percent: 0
-
         }
     }
-
     render() {
         return (
             <div>
+                <RayrBar percent={this.state.percent}/>
                 <RayrPie percent={this.state.percent}/>
                 <button onClick={() => {
                     this.setState({

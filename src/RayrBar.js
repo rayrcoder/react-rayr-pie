@@ -1,8 +1,8 @@
 import React from 'react';
-import {propTypes, defaultProps} from './pieTypes';
+import {propTypes, defaultProps} from './barTypes';
 import PropTypes from 'prop-types';
 
-class RayrPie extends React.Component {
+class RayrBar extends React.Component {
     static propTypes = {};
     static defaultProps = {};
 
@@ -14,20 +14,16 @@ class RayrPie extends React.Component {
     initStyle() {
         const {percent, strokeWidth, backWidth, backColor, strokeColor, strokeLinecap} = this.props;
         const Percent = percent < 0 ? 0 : percent > 100 ? 100 : percent;
-        const radius = 50 - (strokeWidth / 2);
-        const perimeter = Math.PI * 2 * radius;
-        const strokeCirMainStyle = {
-            r: radius,
+
+        const strokeLineMainStyle = {
             strokeWidth: Percent === 0 ? 0 : strokeWidth,
-            transform: `matrix(0,-1,1,0,0,100)`,
-            strokeDasharray: `${Percent / 100 * perimeter} ${perimeter}`,
-            transition: 'stroke-dasharray 1s ease , stroke-width .05s ease',
+            strokeDasharray: `${Percent} 100 `,
+            transition: 'stroke-dasharray  1s ease , stroke-width .05s ease',
             stroke: strokeColor,
             strokeLinecap: strokeLinecap,
         };
-        const backCirMainStyle = {
+        const backLineMainStyle = {
             strokeWidth: backWidth,
-            r: radius,
             stroke: backColor,
         }
         const textMainStyle = {
@@ -35,26 +31,31 @@ class RayrPie extends React.Component {
             textAnchor: 'middle',
             dominantBaseline: 'middle'
         }
-        return {strokeCirMainStyle, backCirMainStyle, textMainStyle, Percent};
+        return {strokeLineMainStyle, backLineMainStyle, textMainStyle, Percent};
     }
 
     render() {
         const {
             classPrefix, textContent, style, textStyle
         } = this.props;
-        const {strokeCirMainStyle, backCirMainStyle, textMainStyle, Percent} = this.initStyle();
+        const {strokeLineMainStyle, backLineMainStyle, textMainStyle, Percent} = this.initStyle();
         {
             console.log(Percent)
         }
 
         return (
-            <div className="rayr-pie">
+            <div className="rayr-bar">
                 <svg viewBox="0 0 100 100" style={style} className={`${classPrefix}-wrap`}>
-                    <circle cx="50" cy="50" fill='none' style={backCirMainStyle}/>
+                    <path fill='none'
+                          style={backLineMainStyle}/>
+                    <path  fill='none'
+                          style={strokeLineMainStyle}/>
+
+                    <circle cx="50" cy="50" fill='none' style={backLineMainStyle}/>
                     <text x="50" y="50" style={{...textMainStyle, ...textStyle}}
                           className={`${classPrefix}-text`}>{textContent}{Percent}%
                     </text>
-                    <circle cx="50" cy="50" fill='none' style={strokeCirMainStyle}
+                    <circle cx="50" cy="50" fill='none' style={strokeLineMainStyle}
                             className={`${classPrefix}-stroke-circle`}/>
                 </svg>
             </div>
@@ -62,8 +63,8 @@ class RayrPie extends React.Component {
     }
 }
 
-RayrPie.defaultProps = {
+RayrBar.defaultProps = {
     ...defaultProps,
 };
 
-export default RayrPie;
+export default RayrBar;
