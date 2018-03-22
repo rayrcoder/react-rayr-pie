@@ -1,7 +1,7 @@
-# RayrPie ⭕️
+# RayrProgress ⭕️ 
 
 ## Features 
-* A simple process circle by svg
+* Simple process circle && bar by svg
 
 ## Environment Support
 
@@ -18,7 +18,7 @@ npm install react-rayr-cli -g
 ## Usage
 
 ```jsx
-import { RayrPie } from 'rayr';
+import { RayrPie,RayrBar } from 'rayr';
 ReactDOM.render(<RayrPie />, mountNode);
 ```
 
@@ -37,12 +37,16 @@ $ npm start
 ```
 
 ## Params 
-* width: box-width-number
-* thick: circle-width-number
-* value: process-number
-* radius: optional-number
-* backColor:color-value
-* fontColor:color-value
-* durTime:clock-value | indefinite
-* calcMode:discrete | linear | paced | spline
-* linecap:butt | round | square | inherit
+textContent: PropTypes.string,
+className: PropTypes.string,
+percent: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+classPrefix: PropTypes.string,
+strokeColor: PropTypes.string,
+strokeLinecap: PropTypes.oneOf(['butt', 'round', 'square']),
+strokeWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+style: PropTypes.object,
+textStyle: PropTypes.object,
+backColor: PropTypes.string,
+backWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
+

@@ -52,9 +52,9 @@ class RayrBar extends React.Component {
         return (
             <div className="rayr-bar">
                 <svg viewBox={`0 0 100 ${strokeWidth}`} style={style} className={`${classPrefix}-wrap`}>
-                    <path fill='none'
+                    <path fill='none'  className={`${classPrefix}-back-line`}
                           style={backLineMainStyle} d={pathD}/>
-                    <path fill='none'
+                    <path fill='none'  className={`${classPrefix}-stroke-line`}
                           style={strokeLineMainStyle} d={pathD}/>
                     <text x="50" y={strokeWidth/2} style={{...textMainStyle, ...textStyle}}
                           className={`${classPrefix}-text`}>{textContent}{percent}%
