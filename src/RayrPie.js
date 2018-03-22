@@ -2,6 +2,7 @@ import React from 'react';
 import {propTypes, defaultProps} from './pieTypes';
 import PropTypes from 'prop-types';
 
+
 class RayrPie extends React.Component {
     static propTypes = {};
     static defaultProps = {};
@@ -38,14 +39,11 @@ class RayrPie extends React.Component {
     }
 
     render() {
-        const {
-            classPrefix, textContent, style, textStyle,percent
-        } = this.props;
+        const {classPrefix, textContent, style, textStyle, percent} = this.props;
         const {strokeCirMainStyle, backCirMainStyle, textMainStyle} = this.initStyle();
         {
             console.log(percent)
         }
-
         return (
             <div className="rayr-pie">
                 <svg viewBox="0 0 100 100" style={style} className={`${classPrefix}-wrap`}>

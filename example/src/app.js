@@ -1,6 +1,7 @@
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import {RayrPie,RayrBar} from 'react-rayr-pie';
 
 class App extends React.Component {
