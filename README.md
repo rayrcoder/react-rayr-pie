@@ -37,16 +37,16 @@ $ npm start
 ```
 
 ## Params 
-textContent: PropTypes.string,
-className: PropTypes.string,
-percent: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-classPrefix: PropTypes.string,
-strokeColor: PropTypes.string,
-strokeLinecap: PropTypes.oneOf(['butt', 'round', 'square']),
-strokeWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-style: PropTypes.object,
-textStyle: PropTypes.object,
-backColor: PropTypes.string,
-backWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+*textContent: PropTypes.string,
+*className: PropTypes.string,
+*percent: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+*classPrefix: PropTypes.string,
+*strokeColor: PropTypes.string,
+*strokeLinecap: PropTypes.oneOf(['butt', 'round', 'square']),
+*strokeWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+*style: PropTypes.object,
+*textStyle: PropTypes.object,
+*backColor: PropTypes.string,
+*backWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
 
