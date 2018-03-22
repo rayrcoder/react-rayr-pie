@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types';
 
 export const defaultProps = {
-    textStyle:{fill:'black'},
+    textStyle:{fill:'black',display:'none'},
     textContent:'文字',
-    percent: 50,
+    percent: 0,
     classPrefix: 'rayr-pie',
     strokeColor: 'red',
     strokeLinecap: 'round',
     strokeWidth: 10,
     style: {},
     backColor: '#D9D9D9',
-    backWidth: 10,
+    backWidth: 5,
 };
 
 export const propTypes = {

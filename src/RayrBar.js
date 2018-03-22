@@ -13,50 +13,53 @@ class RayrBar extends React.Component {
 
     initStyle() {
         const {percent, strokeWidth, backWidth, backColor, strokeColor, strokeLinecap} = this.props;
-        const Percent = percent < 0 ? 0 : percent > 100 ? 100 : percent;
-
+        const center = strokeWidth / 2;
+        const pathD =
+            `M ${strokeLinecap === 'round' ? center : 0},${center}
+           L ${strokeLinecap === 'round' ? (100 - (strokeWidth / 2)) : 100},${center}`;
+        const totalLength = strokeLinecap === 'round' ? (100 - strokeWidth) : 100;
         const strokeLineMainStyle = {
-            strokeWidth: Percent === 0 ? 0 : strokeWidth,
-            strokeDasharray: `${Percent} 100 `,
-            transition: 'stroke-dasharray  1s ease , stroke-width .05s ease',
-            stroke: strokeColor,
+            strokeWidth: strokeWidth,
             strokeLinecap: strokeLinecap,
+            strokeDasharray: `${totalLength} ${totalLength}`,
+            strokeDashoffset: `${(totalLength - percent * (totalLength / 100))}`,
+            transition: 'stroke-dashoffset 1s ease , stroke-width .05s ease',
+            stroke: strokeColor,
         };
         const backLineMainStyle = {
+            strokeLinecap: strokeLinecap,
             strokeWidth: backWidth,
             stroke: backColor,
         }
         const textMainStyle = {
+            fontSize:10,
             fill: 'red',
             textAnchor: 'middle',
             dominantBaseline: 'middle'
         }
-        return {strokeLineMainStyle, backLineMainStyle, textMainStyle, Percent};
+        return {strokeLineMainStyle, backLineMainStyle, textMainStyle, pathD};
     }
 
     render() {
         const {
-            classPrefix, textContent, style, textStyle
+            classPrefix, textContent, style, textStyle, percent,strokeWidth
         } = this.props;
-        const {strokeLineMainStyle, backLineMainStyle, textMainStyle, Percent} = this.initStyle();
+        const {strokeLineMainStyle, backLineMainStyle, textMainStyle, pathD} = this.initStyle();
         {
-            console.log(Percent)
+            console.log(percent)
         }
 
         return (
             <div className="rayr-bar">
-                <svg viewBox="0 0 100 100" style={style} className={`${classPrefix}-wrap`}>
+                <svg viewBox={`0 0 100 ${strokeWidth}`} style={style} className={`${classPrefix}-wrap`}>
                     <path fill='none'
-                          style={backLineMainStyle}/>
-                    <path  fill='none'
-                          style={strokeLineMainStyle}/>
-
-                    <circle cx="50" cy="50" fill='none' style={backLineMainStyle}/>
-                    <text x="50" y="50" style={{...textMainStyle, ...textStyle}}
-                          className={`${classPrefix}-text`}>{textContent}{Percent}%
+                          style={backLineMainStyle} d={pathD}/>
+                    <path fill='none'
+                          style={strokeLineMainStyle} d={pathD}/>
+                    <text x="50" y={strokeWidth/2} style={{...textMainStyle, ...textStyle}}
+                          className={`${classPrefix}-text`}>{textContent}{percent}%
                     </text>
-                    <circle cx="50" cy="50" fill='none' style={strokeLineMainStyle}
-                            className={`${classPrefix}-stroke-circle`}/>
+
                 </svg>
             </div>
         );

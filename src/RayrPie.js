@@ -13,14 +13,13 @@ class RayrPie extends React.Component {
 
     initStyle() {
         const {percent, strokeWidth, backWidth, backColor, strokeColor, strokeLinecap} = this.props;
-        const Percent = percent < 0 ? 0 : percent > 100 ? 100 : percent;
         const radius = 50 - (strokeWidth / 2);
         const perimeter = Math.PI * 2 * radius;
         const strokeCirMainStyle = {
             r: radius,
-            strokeWidth: Percent === 0 ? 0 : strokeWidth,
+            strokeWidth: percent === 0 ? 0 : strokeWidth,
             transform: `matrix(0,-1,1,0,0,100)`,
-            strokeDasharray: `${Percent / 100 * perimeter} ${perimeter}`,
+            strokeDasharray: `${percent / 100 * perimeter} ${perimeter}`,
             transition: 'stroke-dasharray 1s ease , stroke-width .05s ease',
             stroke: strokeColor,
             strokeLinecap: strokeLinecap,
@@ -35,16 +34,16 @@ class RayrPie extends React.Component {
             textAnchor: 'middle',
             dominantBaseline: 'middle'
         }
-        return {strokeCirMainStyle, backCirMainStyle, textMainStyle, Percent};
+        return {strokeCirMainStyle, backCirMainStyle, textMainStyle};
     }
 
     render() {
         const {
-            classPrefix, textContent, style, textStyle
+            classPrefix, textContent, style, textStyle,percent
         } = this.props;
-        const {strokeCirMainStyle, backCirMainStyle, textMainStyle, Percent} = this.initStyle();
+        const {strokeCirMainStyle, backCirMainStyle, textMainStyle} = this.initStyle();
         {
-            console.log(Percent)
+            console.log(percent)
         }
 
         return (
@@ -52,7 +51,7 @@ class RayrPie extends React.Component {
                 <svg viewBox="0 0 100 100" style={style} className={`${classPrefix}-wrap`}>
                     <circle cx="50" cy="50" fill='none' style={backCirMainStyle}/>
                     <text x="50" y="50" style={{...textMainStyle, ...textStyle}}
-                          className={`${classPrefix}-text`}>{textContent}{Percent}%
+                          className={`${classPrefix}-text`}>{textContent}{percent}%
                     </text>
                     <circle cx="50" cy="50" fill='none' style={strokeCirMainStyle}
                             className={`${classPrefix}-stroke-circle`}/>
